@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -23,8 +24,10 @@ public class AuthGUI extends JPanel{
 	
 	private void init(){
 		this.setBackground(Color.green);
-		this.add(new JTextField("TEST"));
-		
+		this.add(new JLabel("Username : "));
+		this.add(new JTextField(10));
+		this.add(new JLabel("Password : "));
+		this.add(new JTextField(10));
 		this.loginButton = new JButton("Login");
 		loginButton.addActionListener(new ActionListener() {
 			
