@@ -1,11 +1,16 @@
 package com.jacs;
 
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.io.IOException;
+import java.io.InputStream;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
 
 import com.jacs.controller.GUIController;
 
@@ -18,6 +23,15 @@ public class BasePanel extends JPanel{
 	public BasePanel(String name, GUIController controller){
 		this.pageName = name;
 		this.guiController = controller;
+		InputStream in = this.getClass().getResourceAsStream("res/fonts/THSarabun.ttf");  
+		try {
+			Font font = Font.createFont(Font.TRUETYPE_FONT, in);
+		} catch (FontFormatException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
+		//UIManager.put(arg0, arg1)
 	}
 
 	@Override
