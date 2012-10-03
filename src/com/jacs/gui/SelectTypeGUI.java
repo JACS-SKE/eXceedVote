@@ -17,8 +17,7 @@ public class SelectTypeGUI extends BasePanel{
 	}
 	
 	private void init(){
-		this.setBackground(Color.orange);
-		this.add(new JButton("CHOOSE"));
+		
 	}
 	
 }
