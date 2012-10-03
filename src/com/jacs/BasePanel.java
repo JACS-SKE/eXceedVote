@@ -42,6 +42,7 @@ public class BasePanel extends JPanel{
 		
 		topPanel.setPreferredSize(new Dimension(800, 50));
 		topPanel.setLayout(new BorderLayout());
+		setLayout(new BorderLayout());
 		
 		JLabel label = new JLabel();
 		label.setText("      eXceed Vote   >   "+this.pageName);
