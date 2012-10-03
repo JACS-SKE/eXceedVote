@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" 
+			 xmlns="http://java.sun.com/xml/ns/persistence" 
+			 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+			 xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+  
+  <persistence-unit name="friendsdb" transaction-type="RESOURCE_LOCAL">
+	<!-- we are using EclipseLink as the implementation of JPA -->
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+	<!-- save objects from these Java classes -->
+    <class>friendsdb.model.Hobby</class>
+    <class>friendsdb.model.Person</class>
+	<!-- describe the database for JPA -->
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:derby:/temp/friends;create=true"/>
+      <property name="javax.persistence.jdbc.user" value=""/>
+      <property name="javax.persistence.jdbc.password" value=""/>
+      <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver"/>
+      <property name="eclipselink.ddl-generation" value="create-tables"/>
+    </properties>
+  </persistence-unit>
+</persistence>
