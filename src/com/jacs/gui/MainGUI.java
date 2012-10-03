@@ -39,8 +39,8 @@ public class MainGUI extends JFrame{
 		guiController = new GUIController(container);
 		
 		this.authPanel = new AuthGUI("Login", this.guiController);
-		this.typePanel = new SelectTypeGUI("CHOOSE TYPE", this.guiController);
-		this.teamPanel = new SelectTeamGUI("CHOOSE TEAM", this.guiController);
+		this.typePanel = new SelectTypeGUI("Choose type for voting", this.guiController);
+		this.teamPanel = new SelectTeamGUI("Choose and give point for a team you like!", this.guiController);
 		
 		container.add(authPanel, Constant.AUTH_PANEL);
 		container.add(typePanel, Constant.TYPE_PANEL);

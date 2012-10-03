@@ -1,5 +1,7 @@
 package com.jacs;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontFormatException;
@@ -9,7 +11,9 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.UIManager;
 
 import com.jacs.controller.GUIController;
@@ -18,11 +22,33 @@ public class BasePanel extends JPanel{
 	
 	protected String pageName;
 	protected GUIController guiController;
-	private JPanel panelBgImg;
+	private JPanel topPanel;
 	
 	public BasePanel(String name, GUIController controller){
 		this.pageName = name;
 		this.guiController = controller;
+		
+		topPanel = new JPanel(){
+
+			@Override
+			protected void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				Image img = new ImageIcon("res/images/topbar.png").getImage();
+				Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
+				g.drawImage(img, 0, 0, null);
+			}
+			
+		};
+		
+		topPanel.setPreferredSize(new Dimension(800, 50));
+		topPanel.setLayout(new BorderLayout());
+		
+		JLabel label = new JLabel();
+		label.setText("      eXceed Vote   >   "+this.pageName);
+		label.setForeground(Color.white);
+		topPanel.add(label);
+		
+		this.add(topPanel, BorderLayout.NORTH);
 	}
 
 	@Override

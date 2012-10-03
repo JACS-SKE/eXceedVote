@@ -1,12 +1,10 @@
 package com.jacs.gui;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import com.jacs.BasePanel;
@@ -23,7 +21,7 @@ public class AuthGUI extends BasePanel{
 	}
 	
 	private void init(){
-		this.setBackground(Color.green);
+		
 		this.add(new JLabel("Username : "));
 		this.add(new JTextField(10));
 		this.add(new JLabel("Password : "));
