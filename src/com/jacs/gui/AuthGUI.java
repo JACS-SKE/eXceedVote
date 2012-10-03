@@ -1,7 +1,6 @@
 package com.jacs.gui;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -29,13 +28,17 @@ public class AuthGUI extends BasePanel{
 	
 	private void init(){
 		loginBox = new JPanel();
+		loginBox.setOpaque(false);
+		FlowLayout layout = new FlowLayout(FlowLayout.CENTER,0,100);
+		loginBox.setLayout(layout);
 		txtUser = new JTextField(10);
 		txtPass = new JPasswordField(10);
 		
-		this.add(new JLabel("Username : ")); 
-		this.add(txtUser);
-		this.add(new JLabel("Password : "));
-		this.add(txtPass);
+		loginBox.add(new JLabel("Username : ")); 
+		loginBox.add(txtUser);
+		loginBox.add(new JLabel("Password : "));
+		loginBox.add(txtPass);
+		
 		this.loginButton = new JButton("Login");
 		loginButton.addActionListener(new ActionListener() {
 			
@@ -45,7 +48,8 @@ public class AuthGUI extends BasePanel{
 			}
 		});
 		
-		this.add(loginButton);
+		loginBox.add(loginButton);
+		this.add(loginBox);
 		
 	}
 	
