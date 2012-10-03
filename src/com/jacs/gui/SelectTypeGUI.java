@@ -6,13 +6,13 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import com.jacs.BasePanel;
 import com.jacs.controller.GUIController;
 
-public class SelectTypeGUI extends JPanel{
+public class SelectTypeGUI extends BasePanel{
 	
-	GUIController guiController;
-	
-	public SelectTypeGUI(){
+	public SelectTypeGUI(String name, GUIController guiController){
+		super(name, guiController);
 		init();
 	}
 	
