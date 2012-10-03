@@ -9,16 +9,16 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import com.jacs.BasePanel;
 import com.jacs.constant.Constant;
 import com.jacs.controller.GUIController;
 
-public class AuthGUI extends JPanel{
+public class AuthGUI extends BasePanel{
 	
-	private GUIController guiController;
 	private JButton loginButton;
 	
-	public AuthGUI(GUIController gui){
-		this.guiController = gui;
+	public AuthGUI(String name, GUIController guiController){
+		super(name, guiController);
 		init();
 	}
 	
