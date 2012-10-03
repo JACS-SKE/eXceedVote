@@ -1,13 +1,11 @@
 package com.jacs;
 
-import com.jacs.gui.VoteGUI;
-
-
+import com.jacs.gui.MainGUI;
 
 public class Main {
 
 	public static void main(String[] args) {
-		VoteGUI gui = new VoteGUI();
+		MainGUI gui = new MainGUI();
 		gui.run();
 	}
 
