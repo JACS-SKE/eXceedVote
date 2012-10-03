@@ -1,5 +1,7 @@
-public static void Main(){
-	System.out.println("Welcome to GitHub.");
-	System.out.println();
-	System.out.println("Fuck");
+public class Main {
+
+	public static void main(String[] args) {
+		
+	}
+
 }
