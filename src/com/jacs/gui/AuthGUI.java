@@ -25,6 +25,7 @@ public class AuthGUI extends BasePanel{
 	private JButton loginButton;
 	private JTextField txtUser;
 	private JPasswordField txtPass;
+	private JPanel loginPanel;
 	private JLabel loginStatus;
 	private JPanel userPanel;
 	private JPanel passPanel;
@@ -39,7 +40,7 @@ public class AuthGUI extends BasePanel{
 	}
 	
 	private void init(){
-		gridLogin = new GridLayout(4,1);
+		gridLogin = new GridLayout(5,1);
 		
 		loginBox = new JPanel(){
 
@@ -52,7 +53,7 @@ public class AuthGUI extends BasePanel{
 			}
 			
 		};
-		loginBox.setPreferredSize(new Dimension(250,150));
+		loginBox.setPreferredSize(new Dimension(250,210));
 		loginBox.setLayout(gridLogin);
 		
 		userPanel = new JPanel();
@@ -75,8 +76,9 @@ public class AuthGUI extends BasePanel{
 		statePanel = new JPanel();
 		statePanel.setOpaque(false);
 		statePanel.add(loginStatus);
-		loginButton = new JButton("Login");
-		//loginButton.setBorder(BorderFactory.createEmptyBorder());
+		loginButton = new JButton(new ImageIcon("res/images/btn_login.png"));
+		loginButton.setBorder(BorderFactory.createEmptyBorder());
+		loginButton.setPressedIcon(new ImageIcon("res/images/btn_login_pressed.png"));
 		loginButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -88,8 +90,12 @@ public class AuthGUI extends BasePanel{
 			}
 		});
 		
-		submitPanel.add(loginButton);
+		loginPanel = new JPanel();
+		loginPanel.add(new JLabel("Login"));
+		loginPanel.setOpaque(false);
 		
+		submitPanel.add(loginButton);
+		loginBox.add(loginPanel);
 		loginBox.add(userPanel);
 		loginBox.add(passPanel);
 		loginBox.add(submitPanel);
