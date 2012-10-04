@@ -44,7 +44,10 @@ public class AuthGUI extends BasePanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				guiController.swap(Constant.TYPE_PANEL);
+				if(txtUser.getText().toString().equals("chayanon") && txtPass.getText().toString().equals("1234")){
+					guiController.sendAuthMsg("USERNAME", "Chayanon");
+					guiController.swap(Constant.TYPE_PANEL);
+				}
 			}
 		});
 		

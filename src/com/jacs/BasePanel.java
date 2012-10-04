@@ -50,6 +50,8 @@ public class BasePanel extends JPanel{
 		topPanel.add(label);
 		
 		this.add(topPanel, BorderLayout.NORTH);
+		JLabel bottom = new JLabel("Developed by JACS");
+		this.add(bottom, BorderLayout.SOUTH);
 	}
 
 	@Override

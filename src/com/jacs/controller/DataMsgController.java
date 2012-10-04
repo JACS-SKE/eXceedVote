@@ -10,7 +10,7 @@ public class DataMsgController {
 		map = new HashMap<String, String>();
 	}
 	
-	public void addMsg(String key, String value){
+	public void addNameMsg(String key, String value){
 		map.put(key, value);
 	}
 	
