@@ -47,12 +47,14 @@ public class AuthGUI extends BasePanel{
 			@Override
 			protected void paintComponent(Graphics g) {
 				super.paintComponent(g);
+				/*
 				Image img = new ImageIcon("res/images/bg_login_box.png").getImage();
 				Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
 				g.drawImage(img, 0, 0, null);
+				*/
 			}
-			
 		};
+		loginBox.setBackground(Color.white);
 		loginBox.setPreferredSize(new Dimension(250,210));
 		loginBox.setLayout(gridLogin);
 		
