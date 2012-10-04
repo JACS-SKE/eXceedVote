@@ -17,7 +17,6 @@ import com.jacs.controller.GUIController;
 public class SelectTeamGUI extends BasePanel{
 	
 	private String[] nameString;
-	private JPanel loginBox;
 	private String selected;
 	
 	public SelectTeamGUI(String name, GUIController guiController){
@@ -27,10 +26,6 @@ public class SelectTeamGUI extends BasePanel{
 	}
 	
 	private void init(){
-		loginBox = new JPanel();
-		loginBox.setOpaque(false);
-		FlowLayout layout = new FlowLayout(FlowLayout.CENTER,0,100);
-		loginBox.setLayout(layout);
 		
 		JComboBox typeList = new JComboBox(nameString);
 		typeList.addActionListener(new ActionListener() {
@@ -55,9 +50,9 @@ public class SelectTeamGUI extends BasePanel{
 			}
 		});
 		
-		loginBox.add(typeList);
-		loginBox.add(btType);
-		this.add(loginBox);
+		this.box.add(typeList);
+		this.box.add(btType);
+		this.add(this.box);
 	}
 	
 }

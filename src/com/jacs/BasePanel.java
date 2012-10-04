@@ -3,6 +3,7 @@ package com.jacs;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Graphics;
@@ -23,11 +24,17 @@ public class BasePanel extends JPanel{
 	protected String pageName;
 	protected GUIController guiController;
 	private JPanel topPanel;
+	protected JPanel box;
 	
 	public BasePanel(String name, GUIController controller){
 		this.pageName = name;
 		this.guiController = controller;
 		
+		box = new JPanel();
+		box.setOpaque(false);
+		FlowLayout layout = new FlowLayout(FlowLayout.CENTER,0,100);
+		box.setLayout(layout);
+
 		topPanel = new JPanel(){
 
 			@Override

@@ -19,7 +19,6 @@ public class AuthGUI extends BasePanel{
 	private JButton loginButton;
 	private JTextField txtUser;
 	private JPasswordField txtPass;
-	private JPanel loginBox;
 	
 	public AuthGUI(String name, GUIController guiController){
 		super(name, guiController);
@@ -27,17 +26,13 @@ public class AuthGUI extends BasePanel{
 	}
 	
 	private void init(){
-		loginBox = new JPanel();
-		loginBox.setOpaque(false);
-		FlowLayout layout = new FlowLayout(FlowLayout.CENTER,0,100);
-		loginBox.setLayout(layout);
 		txtUser = new JTextField(10);
 		txtPass = new JPasswordField(10);
 		
-		loginBox.add(new JLabel("Username : ")); 
-		loginBox.add(txtUser);
-		loginBox.add(new JLabel("Password : "));
-		loginBox.add(txtPass);
+		this.box.add(new JLabel("Username : ")); 
+		this.box.add(txtUser);
+		this.box.add(new JLabel("Password : "));
+		this.box.add(txtPass);
 		
 		this.loginButton = new JButton("Login");
 		loginButton.addActionListener(new ActionListener() {
@@ -51,9 +46,8 @@ public class AuthGUI extends BasePanel{
 			}
 		});
 		
-		loginBox.add(loginButton);
-		this.add(loginBox);
-		
+		this.box.add(loginButton);
+		this.add(this.box);
 	}
 	
 }

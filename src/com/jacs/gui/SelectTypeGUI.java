@@ -15,7 +15,7 @@ import com.jacs.controller.GUIController;
 public class SelectTypeGUI extends BasePanel{
 	
 	private String[] projectType;
-	private JPanel loginBox;
+
 	public SelectTypeGUI(String name, GUIController guiController){
 		super(name, guiController);
 		projectType = new String[]{"Good UI","Good Coding","Best of All"};
@@ -23,10 +23,6 @@ public class SelectTypeGUI extends BasePanel{
 	}
 	
 	private void init(){
-		loginBox = new JPanel();
-		loginBox.setOpaque(false);
-		FlowLayout layout = new FlowLayout(FlowLayout.CENTER,0,100);
-		loginBox.setLayout(layout);
 		
 		JComboBox typeList = new JComboBox(projectType);
 		typeList.addActionListener(new ActionListener() {
@@ -36,7 +32,6 @@ public class SelectTypeGUI extends BasePanel{
 				JComboBox cb = (JComboBox)e.getSource();
 		        String typeName = (String)cb.getSelectedItem();
 		        guiController.sendVoteType("VOTE_TYPE", typeName);
-				//System.out.println(typeName);
 			}
 		});
 		
@@ -49,9 +44,9 @@ public class SelectTypeGUI extends BasePanel{
 			}
 		});
 		
-		loginBox.add(typeList);
-		loginBox.add(btType);
-		this.add(loginBox);
+		this.box.add(typeList);
+		this.box.add(btType);
+		this.add(box);
 	}
 	
 }
