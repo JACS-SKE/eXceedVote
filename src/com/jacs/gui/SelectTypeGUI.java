@@ -8,7 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
-import com.jacs.BasePanel;
+import com.jacs.component.BasePanel;
 import com.jacs.constant.Constant;
 import com.jacs.controller.GUIController;
 

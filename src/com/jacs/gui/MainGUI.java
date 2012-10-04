@@ -18,6 +18,7 @@ public class MainGUI extends JFrame{
 	private CardLayout cardLayout;
 	private JPanel container;
 	private AuthGUI authPanel;
+	private RegisGUI regisPanel; 
 	private SelectTypeGUI typePanel;
 	private SelectTeamGUI teamPanel;
 	
@@ -39,6 +40,7 @@ public class MainGUI extends JFrame{
 		guiController = new GUIController(container);
 		
 		this.authPanel = new AuthGUI("Login", this.guiController);
+		this.regisPanel = new RegisGUI("Registration", this.guiController);
 		this.typePanel = new SelectTypeGUI("Choose type for voting", this.guiController);
 		this.teamPanel = new SelectTeamGUI("Choose and give point for a team you like!", this.guiController);
 		

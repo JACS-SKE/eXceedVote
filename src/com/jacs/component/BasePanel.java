@@ -1,4 +1,4 @@
-package com.jacs;
+package com.jacs.component;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

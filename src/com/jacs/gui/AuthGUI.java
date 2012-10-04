@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import com.jacs.BasePanel;
+import com.jacs.component.BasePanel;
 import com.jacs.constant.Constant;
 import com.jacs.controller.GUIController;
 
