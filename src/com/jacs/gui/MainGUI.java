@@ -1,6 +1,7 @@
 package com.jacs.gui;
 
 import java.awt.CardLayout;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.ArrayList;
@@ -45,6 +46,7 @@ public class MainGUI extends JFrame{
 		this.teamPanel = new SelectTeamGUI("Choose and give point for a team you like!", this.guiController);
 		
 		container.add(authPanel, Constant.AUTH_PANEL);
+		container.add(regisPanel, Constant.REGIS_PANEL);
 		container.add(typePanel, Constant.TYPE_PANEL);
 		container.add(teamPanel, Constant.TEAM_PANEL);
 		

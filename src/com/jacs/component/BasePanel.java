@@ -57,7 +57,7 @@ public class BasePanel extends JPanel{
 		topPanel.add(label);
 		
 		this.add(topPanel, BorderLayout.NORTH);
-		JLabel bottom = new JLabel("Developed by JACS");
+		JLabel bottom = new JLabel("Developed by JACS Team SKE'09");
 		this.add(bottom, BorderLayout.SOUTH);
 	}
 
