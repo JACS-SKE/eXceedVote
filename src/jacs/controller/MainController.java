@@ -43,7 +43,6 @@ public class MainController {
 	
 	public void sendToServer(String msg){
 		serverList.add(msg);
-		System.out.println(serverList.size());
 	}
 	
 	public List getServerList(){

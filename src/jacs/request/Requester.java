@@ -22,13 +22,12 @@ public class Requester{
  	
 	public Requester(ServerController serverController){
 		this.serverController = serverController;
-		System.out.println();
 	}
 
 	public void run() throws ClassNotFoundException
 	{
 		try{
-			requestSocket = new Socket("192.168.1.33", port);
+			requestSocket = new Socket("192.168.1.34", port);
 			System.out.println("Connected to localhost in port "+port);
 			out = new ObjectOutputStream(requestSocket.getOutputStream());
 			out.flush();
@@ -49,6 +48,8 @@ public class Requester{
 			
 			do{
 				List<String> list = serverController.getMainController().serverList;
+				//System.out.println(list.size());
+				out.flush();
 				if(list.size() != 0){
 					sendMessage(list.get(0));
 					list.remove(0);
