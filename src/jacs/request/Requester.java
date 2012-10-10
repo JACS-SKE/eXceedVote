@@ -22,6 +22,7 @@ public class Requester{
  	
 	public Requester(ServerController serverController){
 		this.serverController = serverController;
+		System.out.println();
 	}
 
 	public void run() throws ClassNotFoundException
@@ -42,7 +43,7 @@ public class Requester{
 //					System.err.println("data received in unknown format");
 //				}catch(SocketException se){
 //					System.out.println("Server Close");
-//					break;
+//					break;s
 //				}
 //			}while(!message.equals("bye"));
 			
