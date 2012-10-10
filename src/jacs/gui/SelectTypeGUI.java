@@ -2,7 +2,7 @@ package jacs.gui;
 
 import jacs.component.BasePanel;
 import jacs.constant.Constant;
-import jacs.controller.GUIController;
+import jacs.controller.MainController;
 
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -17,7 +17,7 @@ public class SelectTypeGUI extends BasePanel{
 	
 	private String[] projectType;
 
-	public SelectTypeGUI(String name, GUIController guiController){
+	public SelectTypeGUI(String name, MainController guiController){
 		super(name, guiController);
 		projectType = new String[]{"Good UI","Good Coding","Best of All"};
 		init();

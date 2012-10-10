@@ -2,7 +2,8 @@ package jacs.gui;
 
 import jacs.component.BasePanel;
 import jacs.constant.Constant;
-import jacs.controller.GUIController;
+import jacs.controller.MainController;
+import jacs.request.Requester;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -35,7 +36,7 @@ public class AuthGUI extends BasePanel{
 	private JPanel submitPanel;
 	private GridLayout gridLogin;
 	
-	public AuthGUI(String name, GUIController guiController){
+	public AuthGUI(String name, MainController guiController){
 		super(name, guiController);
 		init();
 	}
@@ -43,18 +44,7 @@ public class AuthGUI extends BasePanel{
 	private void init(){
 		gridLogin = new GridLayout(5,1);
 		
-		loginBox = new JPanel(){
-
-			@Override
-			protected void paintComponent(Graphics g) {
-				super.paintComponent(g);
-				/*
-				Image img = new ImageIcon("res/images/bg_login_box.png").getImage();
-				Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
-				g.drawImage(img, 0, 0, null);
-				*/
-			}
-		};
+		loginBox = new JPanel();
 		loginBox.setBackground(Color.white);
 		loginBox.setPreferredSize(new Dimension(250,210));
 		loginBox.setLayout(gridLogin);
@@ -86,10 +76,11 @@ public class AuthGUI extends BasePanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(txtUser.getText().toString().equals("chayanon") && txtPass.getText().toString().equals("1234")){
-					guiController.sendAuthMsg("USERNAME", "Chayanon");
-					guiController.swap(Constant.TYPE_PANEL);
-				}
+				guiController.sendToServer(txtUser.getText().toString());
+//				if(txtUser.getText().toString().equals("chayanon") && txtPass.getText().toString().equals("1234")){
+//					guiController.sendAuthMsg("USERNAME", "Chayanon");
+//					guiController.swap(Constant.TEAM_PANEL);
+//				}
 			}
 		});
 		

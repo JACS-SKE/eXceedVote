@@ -1,22 +1,24 @@
 package jacs.controller;
 
 import java.awt.CardLayout;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.swing.JPanel;
 
-public class GUIController {
+public class MainController {
 	
 	private CardLayout cardLayout;
 	private JPanel container;
 	private HashMap map;
+	public List<String> serverList;
 	
-	public GUIController(JPanel container){
+	public MainController(JPanel container){
 		this.container = container;
 		this.cardLayout = (CardLayout) (this.container.getLayout());
 		map = new HashMap<String, String>();
+		serverList = new ArrayList<String>();
 	}
 	
 	public void swap(String name){
@@ -37,5 +39,14 @@ public class GUIController {
 	
 	public String getType(){
 		return map.get("VOTE_TYPE").toString();
+	}
+	
+	public void sendToServer(String msg){
+		serverList.add(msg);
+		System.out.println(serverList.size());
+	}
+	
+	public List getServerList(){
+		return this.serverList;
 	}
 }

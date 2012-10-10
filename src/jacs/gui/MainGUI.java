@@ -1,7 +1,8 @@
 package jacs.gui;
 
 import jacs.constant.Constant;
-import jacs.controller.GUIController;
+import jacs.controller.MainController;
+import jacs.controller.ServerController;
 
 import java.awt.CardLayout;
 import java.awt.Container;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
@@ -24,7 +26,7 @@ public class MainGUI extends JFrame{
 	private SelectTypeGUI typePanel;
 	private SelectTeamGUI teamPanel;
 	
-	private GUIController guiController;
+	private MainController guiController;
 	
 	public MainGUI(){
 		init();
@@ -39,7 +41,7 @@ public class MainGUI extends JFrame{
 		this.cardLayout = new CardLayout();
 		container = new JPanel(cardLayout);
 		this.setContentPane(container);
-		guiController = new GUIController(container);
+		guiController = new MainController(container);
 		
 		this.authPanel = new AuthGUI("Login", this.guiController);
 		this.regisPanel = new RegisGUI("Registration", this.guiController);
@@ -59,4 +61,7 @@ public class MainGUI extends JFrame{
 		this.setVisible(true);
 	}
 	
+	public MainController getController(){
+		return this.guiController;
+	}
 }
