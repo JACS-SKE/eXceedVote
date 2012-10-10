@@ -2,7 +2,7 @@ package jacs.gui;
 
 import jacs.component.BasePanel;
 import jacs.constant.Constant;
-import jacs.controller.GUIController;
+import jacs.controller.MainController;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -20,7 +20,7 @@ public class SelectTeamGUI extends BasePanel{
 	private String[] nameString;
 	private String selected;
 	
-	public SelectTeamGUI(String name, GUIController guiController){
+	public SelectTeamGUI(String name, MainController guiController){
 		super(name, guiController);
 		nameString = new String[]{"Durian", "Hook Hook", "JACS", "ANT2"};
 		init();

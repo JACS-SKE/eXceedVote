@@ -1,6 +1,7 @@
 package jacs.component;
 
-import jacs.controller.GUIController;
+import jacs.controller.MainController;
+import jacs.controller.ServerController;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -23,11 +24,11 @@ import javax.swing.UIManager;
 public class BasePanel extends JPanel{
 	
 	protected String pageName;
-	protected GUIController guiController;
+	protected MainController guiController;
 	private JPanel topPanel;
 	protected JPanel box;
 	
-	public BasePanel(String name, GUIController controller){
+	public BasePanel(String name, MainController controller){
 		this.pageName = name;
 		this.guiController = controller;
 		
