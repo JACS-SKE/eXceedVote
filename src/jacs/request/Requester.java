@@ -32,23 +32,9 @@ public class Requester{
 			out = new ObjectOutputStream(requestSocket.getOutputStream());
 			out.flush();
 			in = new ObjectInputStream(requestSocket.getInputStream());
-//			do{
-//				try{
-//					message = (String)in.readObject();
-//					System.out.println("server > " + message);
-//					sendMessage("Connected");
-//				}
-//				catch(ClassNotFoundException classNot){
-//					System.err.println("data received in unknown format");
-//				}catch(SocketException se){
-//					System.out.println("Server Close");
-//					break;s
-//				}
-//			}while(!message.equals("bye"));
 			
 			do{
-				List<String> list = serverController.getMainController().serverList;
-				//System.out.println(list.size());
+				List<String> list = serverController.getMainController().getServerList();
 				out.flush();
 				if(list.size() != 0){
 					sendMessage(list.get(0));

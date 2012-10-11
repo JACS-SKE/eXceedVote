@@ -12,7 +12,7 @@ public class MainController {
 	private CardLayout cardLayout;
 	private JPanel container;
 	private HashMap map;
-	public List<String> serverList;
+	private List<String> serverList;
 	
 	public MainController(JPanel container){
 		this.container = container;
@@ -48,4 +48,5 @@ public class MainController {
 	public List getServerList(){
 		return this.serverList;
 	}
+	
 }
