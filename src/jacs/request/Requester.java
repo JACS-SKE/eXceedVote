@@ -27,7 +27,7 @@ public class Requester{
 	public void run() throws ClassNotFoundException
 	{
 		try{
-			requestSocket = new Socket("192.168.1.33", port);
+			requestSocket = new Socket("192.168.1.35", port);
 			System.out.println("Connected to localhost in port "+port);
 			out = new ObjectOutputStream(requestSocket.getOutputStream());
 			out.flush();
