@@ -1,5 +1,7 @@
 package jacs.controller;
 
+import jacs.request.Requester;
+
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,13 +14,20 @@ public class MainController {
 	private CardLayout cardLayout;
 	private JPanel container;
 	private HashMap map;
-	private List<String> serverList;
+	private Requester re;
 	
 	public MainController(JPanel container){
 		this.container = container;
 		this.cardLayout = (CardLayout) (this.container.getLayout());
 		map = new HashMap<String, String>();
-		serverList = new ArrayList<String>();
+	}
+	
+	public void setRequester(Requester re){
+		this.re = re;
+	}
+	
+	public Requester getRequester(){
+		return this.re;
 	}
 	
 	public void swap(String name){
@@ -36,13 +45,4 @@ public class MainController {
 	public String getUsername(){
 		return map.get("USERNAME").toString();
 	}
-	
-	public void sendToServer(String msg){
-		serverList.add(msg);
-	}
-	
-	public List getServerList(){
-		return this.serverList;
-	}
-	
 }

@@ -12,6 +12,7 @@ public class ServerController{
 	public ServerController(MainController controller){
 		this.controller = controller;
 		client = new Requester(this);
+		this.controller.setRequester(client);
 		try {
 			client.run();
 		} catch (ClassNotFoundException e) {

@@ -1,6 +1,7 @@
 package jacs.request;
 
 
+import jacs.controller.MainController;
 import jacs.controller.ServerController;
 
 import java.io.IOException;
@@ -19,27 +20,26 @@ public class Requester{
  	private String message;
  	private int port = 9999;
  	private ServerController serverController;
+ 	private MainController mainController;
  	
 	public Requester(ServerController serverController){
 		this.serverController = serverController;
+		this.mainController = this.serverController.getMainController();
 	}
 
 	public void run() throws ClassNotFoundException{
 		try{
-			requestSocket = new Socket("158.108.181.228", port);
+			requestSocket = new Socket("192.168.1.34", port);
 			System.out.println("Connected to localhost in port "+port);
 			out = new ObjectOutputStream(requestSocket.getOutputStream());
 			out.flush();
 			in = new ObjectInputStream(requestSocket.getInputStream());
 			while(true){
-				System.out.println((String)in.readObject());
-				List<String> list = serverController.getMainController().getServerList();
-				out.flush();
-				if(list.size() != 0){
-					sendMessage(list.get(0));
-					list.remove(0);
+				String str = (String)in.readObject();
+				if(str.equals("LOGIN_SUCCESS,test,student")){
+					System.out.println("success");
 				}
-
+				out.flush();
 			}
 		}
 		catch(UnknownHostException unknownHost){
