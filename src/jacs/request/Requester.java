@@ -24,23 +24,23 @@ public class Requester{
 		this.serverController = serverController;
 	}
 
-	public void run() throws ClassNotFoundException
-	{
+	public void run() throws ClassNotFoundException{
 		try{
-			requestSocket = new Socket("192.168.1.33", port);
+			requestSocket = new Socket("158.108.181.228", port);
 			System.out.println("Connected to localhost in port "+port);
 			out = new ObjectOutputStream(requestSocket.getOutputStream());
 			out.flush();
 			in = new ObjectInputStream(requestSocket.getInputStream());
-			
-			do{
+			while(true){
+				System.out.println((String)in.readObject());
 				List<String> list = serverController.getMainController().getServerList();
 				out.flush();
 				if(list.size() != 0){
 					sendMessage(list.get(0));
 					list.remove(0);
 				}
-			}while(true);
+
+			}
 		}
 		catch(UnknownHostException unknownHost){
 			System.err.println("You are trying to connect to an unknown host!");

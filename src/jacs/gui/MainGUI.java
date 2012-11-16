@@ -23,8 +23,6 @@ public class MainGUI extends JFrame{
 	private JPanel container;
 	private AuthGUI authPanel;
 	private RegisGUI regisPanel; 
-	private SelectTypeGUI typePanel;
-	private SelectTeamGUI teamPanel;
 	
 	private MainController guiController;
 	
@@ -43,16 +41,12 @@ public class MainGUI extends JFrame{
 		this.setContentPane(container);
 		guiController = new MainController(container);
 		
+		//add panel here
 		this.authPanel = new AuthGUI("Login", this.guiController);
 		this.regisPanel = new RegisGUI("Registration", this.guiController);
-		this.typePanel = new SelectTypeGUI("Choose type for voting", this.guiController);
-		this.teamPanel = new SelectTeamGUI("Choose and give point for a team you like!", this.guiController);
 		
 		container.add(authPanel, Constant.AUTH_PANEL);
 		container.add(regisPanel, Constant.REGIS_PANEL);
-		container.add(typePanel, Constant.TYPE_PANEL);
-		container.add(teamPanel, Constant.TEAM_PANEL);
-		
 		
 		this.pack();
 	}

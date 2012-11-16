@@ -25,7 +25,7 @@ public class MainController {
 		cardLayout.show(container, name);
 	}
 	
-	public void sendAuthMsg(String key, String value){
+	public void addMsg(String key, String value){
 		map.put(key, value);
 	}
 	
@@ -35,10 +35,6 @@ public class MainController {
 	
 	public String getUsername(){
 		return map.get("USERNAME").toString();
-	}
-	
-	public String getType(){
-		return map.get("VOTE_TYPE").toString();
 	}
 	
 	public void sendToServer(String msg){
