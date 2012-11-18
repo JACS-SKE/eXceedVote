@@ -1,6 +1,7 @@
 package jacs.controller;
 
 import jacs.request.Requester;
+import jacs.vote.Project;
 
 import java.awt.CardLayout;
 import java.util.ArrayList;
@@ -15,11 +16,24 @@ public class MainController {
 	private JPanel container;
 	private HashMap map;
 	private Requester re;
+	private List<Project> projectList;
+	private List<String> cateriaList;
+	
 	
 	public MainController(JPanel container){
 		this.container = container;
 		this.cardLayout = (CardLayout) (this.container.getLayout());
 		map = new HashMap<String, String>();
+		projectList = new ArrayList<Project>();
+		cateriaList = new ArrayList<String>();
+	}
+	
+	public List<Project> getProjectList() {
+		return projectList;
+	}
+	
+	public List<String> getCateriaList() {
+		return cateriaList;
 	}
 	
 	public void setRequester(Requester re){
@@ -35,10 +49,6 @@ public class MainController {
 	}
 	
 	public void addMsg(String key, String value){
-		map.put(key, value);
-	}
-	
-	public void sendVoteType(String key, String value){
 		map.put(key, value);
 	}
 	

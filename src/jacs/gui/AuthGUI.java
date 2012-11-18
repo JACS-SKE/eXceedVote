@@ -76,10 +76,14 @@ public class AuthGUI extends BasePanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				guiController.getRequester().sendMessage("LOGIN,"+txtUser.getText().toString()+","+txtPass.getText().toString());
-				if(txtUser.getText().toString().equals("chayanon") && txtPass.getText().toString().equals("1234")){
-					guiController.addMsg("USERNAME", "Chayanon");
-				}
+				System.out.println(guiController.getProjectList().size());
+				
+				for(int i = 0 ; i < guiController.getCateriaList().size(); i++)
+					System.out.println(guiController.getCateriaList().get(i));
+//				guiController.getRequester().sendMessage("LOGIN,"+txtUser.getText().toString()+","+txtPass.getText().toString());
+//				if(txtUser.getText().toString().equals("chayanon") && txtPass.getText().toString().equals("1234")){
+//					guiController.addMsg("USERNAME", "Chayanon");
+//				}
 			}
 		});
 		
