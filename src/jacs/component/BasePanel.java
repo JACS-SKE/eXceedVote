@@ -24,13 +24,13 @@ import javax.swing.UIManager;
 public class BasePanel extends JPanel{
 	
 	protected String pageName;
-	protected MainController guiController;
+	protected MainController mainController;
 	private JPanel topPanel;
 	protected JPanel box;
 	
 	public BasePanel(String name, MainController controller){
 		this.pageName = name;
-		this.guiController = controller;
+		this.mainController = controller;
 		
 		box = new JPanel();
 		box.setOpaque(false);

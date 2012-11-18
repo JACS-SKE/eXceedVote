@@ -36,8 +36,8 @@ public class AuthGUI extends BasePanel{
 	private JPanel submitPanel;
 	private GridLayout gridLogin;
 	
-	public AuthGUI(String name, MainController guiController){
-		super(name, guiController);
+	public AuthGUI(String name, MainController mainController){
+		super(name, mainController);
 		init();
 	}
 	
@@ -76,14 +76,11 @@ public class AuthGUI extends BasePanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(guiController.getProjectList().size());
-				
-				for(int i = 0 ; i < guiController.getCateriaList().size(); i++)
-					System.out.println(guiController.getCateriaList().get(i));
-//				guiController.getRequester().sendMessage("LOGIN,"+txtUser.getText().toString()+","+txtPass.getText().toString());
-//				if(txtUser.getText().toString().equals("chayanon") && txtPass.getText().toString().equals("1234")){
-//					guiController.addMsg("USERNAME", "Chayanon");
-//				}
+				mainController.getRequester().sendMessage("LOGIN,"+txtUser.getText().toString()+","+txtPass.getText().toString());
+				if(mainController.getLoginMsg().equals("LOGIN_SUCCESS")){
+					System.out.println("SUCCESS!!!");
+					System.out.println(mainController.getUser().getName());
+				}
 			}
 		});
 		

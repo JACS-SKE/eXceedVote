@@ -3,7 +3,9 @@ package jacs.request;
 
 import jacs.controller.MainController;
 import jacs.controller.ServerController;
+import jacs.vote.Cateria;
 import jacs.vote.Project;
+import jacs.vote.User;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -37,7 +39,6 @@ public class Requester{
 			in = new ObjectInputStream(requestSocket.getInputStream());
 			while(true){
 				String str = (String)in.readObject();
-				System.out.println(str);
 				//String str = "INIT:1,name1:2,name2:3,name3:4,name4#CAT:Best Coding:Best GUI:Best of All";
 				String tmp = str.substring(0, 4);
 				if(tmp.equals("INIT")){
@@ -49,10 +50,18 @@ public class Requester{
 					for(int i = 1 ; i < project.length ; i++)
 						mainController.getProjectList().add(new Project(Integer.parseInt(project[i].split(",")[0]), project[i].split(",")[1])); 
 					for(int i = 1 ; i < cateria.length ; i++)
-						mainController.getCateriaList().add(cateria[i]);
+						mainController.getCateriaList().add(new Cateria(Integer.parseInt(cateria[i].split(",")[0]), cateria[i].split(",")[1]));
 				}else if(tmp.equals("LOGI")){
-					//LOGIN
-					
+					//LOGIN (create user)
+					String[] login = str.split(",");
+						if(login[0].equals("LOGIN_FAILED")){
+							//LOGIN_FAILED
+							mainController.setLoginMsg(login[0]);
+						}else if(login[0].equals("LOGIN_SUCCESS")){
+							//LOGIN_SUCCESS,name,type,point
+							mainController.setLoginMsg(login[0]);
+							mainController.setUser(new User(login[1], login[2], Integer.parseInt(login[3])));
+						}
 				}else if(tmp.equals("LOGI")){
 					//REGIS
 					
