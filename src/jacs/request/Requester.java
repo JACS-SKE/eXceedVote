@@ -15,8 +15,9 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
-public class Requester{
+public class Requester extends Observable{
 	private Socket requestSocket;
 	private ObjectOutputStream out;
  	private ObjectInputStream in;
@@ -61,6 +62,8 @@ public class Requester{
 							//LOGIN_SUCCESS,name,type,point
 							mainController.setLoginMsg(login[0]);
 							mainController.setUser(new User(login[1], login[2], Integer.parseInt(login[3])));
+							this.setChanged();
+							this.notifyObservers("LOGIN");
 						}
 				}else if(tmp.equals("LOGI")){
 					//REGIS

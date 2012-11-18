@@ -27,9 +27,11 @@ public class BasePanel extends JPanel{
 	protected MainController mainController;
 	private JPanel topPanel;
 	protected JPanel box;
+	protected JLabel status;
 	
 	public BasePanel(String name, MainController controller){
 		this.pageName = name;
+		this.setName(pageName);
 		this.mainController = controller;
 		
 		box = new JPanel();
@@ -56,7 +58,12 @@ public class BasePanel extends JPanel{
 		JLabel label = new JLabel();
 		label.setText("      eXceed Vote   >   "+this.pageName);
 		label.setForeground(Color.white);
-		topPanel.add(label);
+		
+		status = new JLabel();
+		status.setText("             Welcome "+mainController.getUser().getName()+" ("+mainController.getUser().getType()+")");
+		status.setForeground(Color.white);
+		topPanel.add(label, BorderLayout.WEST);
+		topPanel.add(status, BorderLayout.CENTER);
 		
 		this.add(topPanel, BorderLayout.NORTH);
 		JLabel bottom = new JLabel("Developed by JACS Team SKE'09");
@@ -76,6 +83,8 @@ public class BasePanel extends JPanel{
          g.drawImage(img, 0, 0, null);
 	}
 	
-	
+	public void init(){
+		status.setText("             Welcome "+mainController.getUser().getName()+" ("+mainController.getUser().getType()+")");
+	}
 	
 }

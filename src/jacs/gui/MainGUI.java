@@ -23,8 +23,9 @@ public class MainGUI extends JFrame{
 	private JPanel container;
 	private AuthGUI authPanel;
 	private RegisGUI regisPanel; 
+	private CatGUI catGUI;
 	
-	private MainController guiController;
+	private static MainController mainController;
 	
 	public MainGUI(){
 		init();
@@ -39,14 +40,17 @@ public class MainGUI extends JFrame{
 		this.cardLayout = new CardLayout();
 		container = new JPanel(cardLayout);
 		this.setContentPane(container);
-		guiController = new MainController(container);
+		mainController = new MainController(container);
 		
 		//add panel here
-		this.authPanel = new AuthGUI("Login", this.guiController);
-		this.regisPanel = new RegisGUI("Registration", this.guiController);
+		this.authPanel = new AuthGUI(Constant.AUTH_PANEL, this.mainController);
+		this.regisPanel = new RegisGUI(Constant.REGIS_PANEL, this.mainController);
+		this.catGUI = new CatGUI(Constant.CAT_PANEL, this.mainController);
+		
 		
 		container.add(authPanel, Constant.AUTH_PANEL);
 		container.add(regisPanel, Constant.REGIS_PANEL);
+		container.add(catGUI, Constant.CAT_PANEL);
 		
 		this.pack();
 	}
@@ -56,6 +60,6 @@ public class MainGUI extends JFrame{
 	}
 	
 	public MainController getController(){
-		return this.guiController;
+		return this.mainController;
 	}
 }

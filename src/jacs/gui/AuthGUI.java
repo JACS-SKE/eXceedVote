@@ -3,13 +3,10 @@ package jacs.gui;
 import jacs.component.BasePanel;
 import jacs.constant.Constant;
 import jacs.controller.MainController;
-import jacs.request.Requester;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -41,7 +38,7 @@ public class AuthGUI extends BasePanel{
 		init();
 	}
 	
-	private void init(){
+	public void init(){
 		gridLogin = new GridLayout(5,1);
 		
 		loginBox = new JPanel();
@@ -74,13 +71,10 @@ public class AuthGUI extends BasePanel{
 		loginButton.setPressedIcon(new ImageIcon("res/images/btn_login_pressed.png"));
 		loginButton.addActionListener(new ActionListener() {
 			
+			@SuppressWarnings("deprecation")
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				mainController.getRequester().sendMessage("LOGIN,"+txtUser.getText().toString()+","+txtPass.getText().toString());
-				if(mainController.getLoginMsg().equals("LOGIN_SUCCESS")){
-					System.out.println("SUCCESS!!!");
-					System.out.println(mainController.getUser().getName());
-				}
 			}
 		});
 		

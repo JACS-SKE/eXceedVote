@@ -1,18 +1,24 @@
 package jacs.controller;
 
+import jacs.component.BasePanel;
+import jacs.constant.Constant;
+import jacs.gui.CatGUI;
 import jacs.request.Requester;
 import jacs.vote.Cateria;
 import jacs.vote.Project;
 import jacs.vote.User;
 
 import java.awt.CardLayout;
+import java.awt.Component;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JPanel;
 
-public class MainController {
+public class MainController implements Observer{
 	
 	private CardLayout cardLayout;
 	private JPanel container;
@@ -35,6 +41,7 @@ public class MainController {
 		LOGIN_MSG = "";
 		REGIS_MSG = "";
 		VOTE_MSG = "";
+		user = new User("Guest", "Unknow Type", 0);
 	}
 	
 	public List<Project> getProjectList() {
@@ -92,4 +99,25 @@ public class MainController {
 	public String getVoteMsg() {
 		return VOTE_MSG;
 	}
+	
+	public Component getChild(String name){
+		Component comp = null;
+		for(int i = 0 ; i < container.getComponentCount() ; i++){
+			if(container.getComponent(i).getName().equals(name)){
+				comp = container.getComponent(i);
+				break;
+			}
+		}
+		return comp;
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		if(this.getLoginMsg().equals("LOGIN_SUCCESS") && arg.equals("LOGIN")){
+			this.swap(Constant.CAT_PANEL);
+			CatGUI cat = (CatGUI)this.getChild(Constant.CAT_PANEL);
+			cat.init();
+		}
+	}
+	
 }
