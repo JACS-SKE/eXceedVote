@@ -39,6 +39,7 @@ public class AuthGUI extends BasePanel{
 	}
 	
 	public void init(){
+		super.init();
 		gridLogin = new GridLayout(5,1);
 		
 		loginBox = new JPanel();
@@ -75,6 +76,7 @@ public class AuthGUI extends BasePanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				mainController.getRequester().sendMessage("LOGIN,"+txtUser.getText().toString()+","+txtPass.getText().toString());
+				//mainController.swap(Constant.CAT_PANEL);
 			}
 		});
 		
@@ -89,7 +91,10 @@ public class AuthGUI extends BasePanel{
 		loginBox.add(submitPanel);
 		loginBox.add(statePanel);
 		this.box.add(loginBox);
-		this.add(this.box);
+	}
+	
+	public void setLoginStatus(String status){
+		this.loginStatus.setText(status);
 	}
 	
 }

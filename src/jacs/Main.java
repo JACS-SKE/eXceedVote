@@ -10,6 +10,6 @@ public class Main {
 		MainGUI gui = new MainGUI();
 		gui.run();
 		ServerController svController = new ServerController(gui.getController());
-	}
+ 	}
 
 }

@@ -2,9 +2,10 @@ package jacs.controller;
 
 import jacs.component.BasePanel;
 import jacs.constant.Constant;
-import jacs.gui.CatGUI;
+import jacs.gui.AuthGUI;
+import jacs.gui.CriGUI;
 import jacs.request.Requester;
-import jacs.vote.Cateria;
+import jacs.vote.Criteria;
 import jacs.vote.Project;
 import jacs.vote.User;
 
@@ -25,7 +26,7 @@ public class MainController implements Observer{
 	private HashMap map;
 	private Requester re;
 	private List<Project> projectList;
-	private List<Cateria> cateriaList;
+	private List<Criteria> cateriaList;
 	private User user;
 	private String LOGIN_MSG;
 	private String REGIS_MSG;
@@ -37,7 +38,7 @@ public class MainController implements Observer{
 		this.cardLayout = (CardLayout) (this.container.getLayout());
 		map = new HashMap<String, String>();
 		projectList = new ArrayList<Project>();
-		cateriaList = new ArrayList<Cateria>();
+		cateriaList = new ArrayList<Criteria>();
 		LOGIN_MSG = "";
 		REGIS_MSG = "";
 		VOTE_MSG = "";
@@ -48,7 +49,7 @@ public class MainController implements Observer{
 		return projectList;
 	}
 	
-	public List<Cateria> getCateriaList() {
+	public List<Criteria> getCateriaList() {
 		return cateriaList;
 	}
 	
@@ -113,10 +114,13 @@ public class MainController implements Observer{
 
 	@Override
 	public void update(Observable o, Object arg) {
-		if(this.getLoginMsg().equals("LOGIN_SUCCESS") && arg.equals("LOGIN")){
+		if(arg.equals("LOGIN_SUCCESS")){
 			this.swap(Constant.CAT_PANEL);
-			CatGUI cat = (CatGUI)this.getChild(Constant.CAT_PANEL);
+			CriGUI cat = (CriGUI)this.getChild(Constant.CAT_PANEL);
 			cat.init();
+		}else if(arg.equals("LOGIN_FAILED")){
+			AuthGUI auth = (AuthGUI)this.getChild(Constant.AUTH_PANEL);
+			auth.setLoginStatus("Check your username and password.");
 		}
 	}
 	

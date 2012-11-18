@@ -85,6 +85,7 @@ public class BasePanel extends JPanel{
 	
 	public void init(){
 		status.setText("             Welcome "+mainController.getUser().getName()+" ("+mainController.getUser().getType()+")");
+		this.add(this.box);
 	}
 	
 }

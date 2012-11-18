@@ -3,7 +3,7 @@ package jacs.request;
 
 import jacs.controller.MainController;
 import jacs.controller.ServerController;
-import jacs.vote.Cateria;
+import jacs.vote.Criteria;
 import jacs.vote.Project;
 import jacs.vote.User;
 
@@ -34,7 +34,6 @@ public class Requester extends Observable{
 	public void run() throws ClassNotFoundException{
 		try{
 			requestSocket = new Socket("192.168.1.49", port);
-			System.out.println("Connected to localhost in port "+port);
 			out = new ObjectOutputStream(requestSocket.getOutputStream());
 			out.flush();
 			in = new ObjectInputStream(requestSocket.getInputStream());
@@ -43,32 +42,34 @@ public class Requester extends Observable{
 				//String str = "INIT:1,name1:2,name2:3,name3:4,name4#CAT:Best Coding:Best GUI:Best of All";
 				String tmp = str.substring(0, 4);
 				if(tmp.equals("INIT")){
-					//INIT -> ProjectList,Cateria
-					//INIT:id1,name1:id2,name2:id3,name3:id4,name4|CAT:Best Coding:Best GUI:Best of All
+					//INIT -> ProjectList,Criteria
+					//INIT:id1,name1:id2,name2:id3,name3:id4,name4#CRI:catID1,Best Coding:catID2,Best GUI:catID3,Best of All
 					String[] split = str.split("#");
 					String[] project = split[0].split(":");
 					String[] cateria = split[1].split(":");
 					for(int i = 1 ; i < project.length ; i++)
 						mainController.getProjectList().add(new Project(Integer.parseInt(project[i].split(",")[0]), project[i].split(",")[1])); 
 					for(int i = 1 ; i < cateria.length ; i++)
-						mainController.getCateriaList().add(new Cateria(Integer.parseInt(cateria[i].split(",")[0]), cateria[i].split(",")[1]));
+						mainController.getCateriaList().add(new Criteria(Integer.parseInt(cateria[i].split(",")[0]), cateria[i].split(",")[1]));
 				}else if(tmp.equals("LOGI")){
 					//LOGIN (create user)
 					String[] login = str.split(",");
 						if(login[0].equals("LOGIN_FAILED")){
 							//LOGIN_FAILED
 							mainController.setLoginMsg(login[0]);
+							this.setChanged();
+							this.notifyObservers("LOGIN_FAILED");
 						}else if(login[0].equals("LOGIN_SUCCESS")){
 							//LOGIN_SUCCESS,name,type,point
 							mainController.setLoginMsg(login[0]);
 							mainController.setUser(new User(login[1], login[2], Integer.parseInt(login[3])));
 							this.setChanged();
-							this.notifyObservers("LOGIN");
+							this.notifyObservers("LOGIN_SUCCESS");
 						}
-				}else if(tmp.equals("LOGI")){
+				}else if(tmp.equals("REGIS")){
 					//REGIS
 					
-				}else if(tmp.equals("LOGI")){
+				}else if(tmp.equals("VOTE")){
 					//VOTE
 					
 				}
