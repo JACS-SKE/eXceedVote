@@ -11,6 +11,7 @@ import jacs.vote.User;
 
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.awt.Container;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,7 +23,7 @@ import javax.swing.JPanel;
 public class MainController implements Observer{
 	
 	private CardLayout cardLayout;
-	private JPanel container;
+	private Container container;
 	private HashMap map;
 	private Requester re;
 	private List<Project> projectList;
@@ -33,7 +34,7 @@ public class MainController implements Observer{
 	private String VOTE_MSG;
 	
 	
-	public MainController(JPanel container){
+	public MainController(Container container){
 		this.container = container;
 		this.cardLayout = (CardLayout) (this.container.getLayout());
 		map = new HashMap<String, String>();
@@ -49,7 +50,7 @@ public class MainController implements Observer{
 		return projectList;
 	}
 	
-	public List<Criteria> getCateriaList() {
+	public List<Criteria> getCriteriaList() {
 		return cateriaList;
 	}
 	
@@ -115,13 +116,17 @@ public class MainController implements Observer{
 	@Override
 	public void update(Observable o, Object arg) {
 		if(arg.equals("LOGIN_SUCCESS")){
-			this.swap(Constant.CAT_PANEL);
-			CriGUI cat = (CriGUI)this.getChild(Constant.CAT_PANEL);
-			cat.init();
+			CriGUI criGUI = new CriGUI(Constant.CRI_PANEL, this);
+			addPage(criGUI, Constant.CRI_PANEL);
+			this.swap(Constant.CRI_PANEL);
 		}else if(arg.equals("LOGIN_FAILED")){
 			AuthGUI auth = (AuthGUI)this.getChild(Constant.AUTH_PANEL);
 			auth.setLoginStatus("Check your username and password.");
 		}
+	}
+	
+	public void addPage(JPanel panel, String name){
+		container.add(panel, name);
 	}
 	
 }

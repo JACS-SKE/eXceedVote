@@ -50,7 +50,7 @@ public class Requester extends Observable{
 					for(int i = 1 ; i < project.length ; i++)
 						mainController.getProjectList().add(new Project(Integer.parseInt(project[i].split(",")[0]), project[i].split(",")[1])); 
 					for(int i = 1 ; i < cateria.length ; i++)
-						mainController.getCateriaList().add(new Criteria(Integer.parseInt(cateria[i].split(",")[0]), cateria[i].split(",")[1]));
+						mainController.getCriteriaList().add(new Criteria(Integer.parseInt(cateria[i].split(",")[0]), cateria[i].split(",")[1]));
 				}else if(tmp.equals("LOGI")){
 					//LOGIN (create user)
 					String[] login = str.split(",");

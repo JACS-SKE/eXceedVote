@@ -17,9 +17,9 @@ import javax.swing.JScrollPane;
 public class MainGUI extends JFrame{
 	
 	private CardLayout cardLayout;
-	private JPanel container;
+	private Container container;
 	private AuthGUI authPanel;
-	private CriGUI catGUI;
+	//private CriGUI catGUI;
 	
 	private static MainController mainController;
 	
@@ -34,17 +34,18 @@ public class MainGUI extends JFrame{
 		this.setPreferredSize(new Dimension(800, 600));
 		this.setIconImage(Toolkit.getDefaultToolkit().getImage("res/images/icon.png"));
 		this.cardLayout = new CardLayout();
-		container = new JPanel(cardLayout);
-		this.setContentPane(container);
+		container = this.getContentPane();
+		container.setLayout(cardLayout);
 		mainController = new MainController(container);
+		
 		
 		//add panel here
 		this.authPanel = new AuthGUI(Constant.AUTH_PANEL, this.mainController);
-		this.catGUI = new CriGUI(Constant.CAT_PANEL, this.mainController);
+		//this.catGUI = new CriGUI(Constant.CAT_PANEL, this.mainController);
 		
 		
 		container.add(authPanel, Constant.AUTH_PANEL);
-		container.add(catGUI, Constant.CAT_PANEL);
+		//container.add(catGUI, Constant.CAT_PANEL);
 		
 		this.pack();
 	}
