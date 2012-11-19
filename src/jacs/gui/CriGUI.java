@@ -152,10 +152,10 @@ public class CriGUI extends BasePanel {
 				
 				if(n == 0){
 					//VOTE:criID1,proName1:criID2,proName2#POINT:proID1,point1:proId2,point2#user
-					StringBuilder sb = new StringBuilder("VOTE:");
+					StringBuilder sb = new StringBuilder("VOTE");
 					for(int i = 0 ; i < mainController.getCriteriaList().size() ; i++){
-						sb.append(mainController.getCriteriaList().get(i).getId()+",");
-						sb.append(mainController.getProjectList().get(res[i][1]).getName()+":");
+						sb.append(":"+mainController.getCriteriaList().get(i).getId()+",");
+						sb.append(mainController.getProjectList().get(res[i][1]).getName());
 					}
 					mainController.addVoteResult(sb.toString());
 					mainController.addPage(new PointGUI(Constant.POINT_PANEL, mainController), Constant.POINT_PANEL);
