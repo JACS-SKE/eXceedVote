@@ -1,20 +1,26 @@
 package jacs.gui;
 
+import jacs.component.BasePanel;
+import jacs.constant.Constant;
+import jacs.controller.MainController;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-
-import jacs.component.BasePanel;
-import jacs.controller.MainController;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.xml.ws.handler.MessageContext.Scope;
 
 public class CriGUI extends BasePanel {
 	
@@ -22,6 +28,7 @@ public class CriGUI extends BasePanel {
 	private JList dataList;
 	private int[][] res;
 	private int nowSelect = 0;
+	private JTextArea show;
 	
 
 	public CriGUI(String name, MainController controller) {
@@ -50,7 +57,7 @@ public class CriGUI extends BasePanel {
 		
 		JPanel result = new JPanel();
 		result.setBackground(Color.white);
-		result.setPreferredSize(new Dimension(280,200));
+		result.setPreferredSize(new Dimension(280,220));
 		
 		//Criteria JList and ScrollPane
 		int pNum = mainController.getCriteriaList().size();
@@ -61,6 +68,8 @@ public class CriGUI extends BasePanel {
 			info.addElement(mainController.getCriteriaList().get(i).getName());
 		
 		dataList = new JList(info);
+		dataList.setForeground(Color.magenta);
+		dataList.setSelectionBackground(Color.lightGray);
 		dataList.addListSelectionListener(new ListSelectionListener() {
 			
 			@Override
@@ -93,6 +102,8 @@ public class CriGUI extends BasePanel {
 			pinfo.addElement(mainController.getProjectList().get(i).getName());
 		
 		proList = new JList(pinfo);
+		proList.setForeground(new Color(0x00a651));
+		proList.setSelectionBackground(Color.lightGray);
 		proList.addListSelectionListener(new ListSelectionListener() {
 			
 			@Override
@@ -104,6 +115,7 @@ public class CriGUI extends BasePanel {
 		        	Object selectionValues[] = list.getSelectedValues();
 		        	for (int i = 0, n = selections.length; i < n; i++) {
 		        		res[nowSelect][1] = selections[i];
+		        		updateResult();
 		        	}
 		        }
 			}
@@ -118,12 +130,54 @@ public class CriGUI extends BasePanel {
 		project.add(choosePro);
 		project.add(proScrollPane);
 		
+		JLabel resultLabel = new JLabel("3. Check your vote result");
+		resultLabel.setForeground(Color.red);
+		show = new JTextArea();
+		show.setEditable(false);
+		show.setPreferredSize(new Dimension(270,150));
+		show.setBackground(new Color(0xffeca2));
+		
+		
+		result.add(resultLabel);
+		result.add(show);
+		
+		
+		JButton submit = new JButton("Submit");
+		submit.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Object[] options = {"Confirm Vote", "Back to Vote"};
+				int n = JOptionPane.showOptionDialog(new JFrame(),"Please check your voting", "Confirm your voting", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null,options,options[0]);
+				
+				if(n == 0){
+					//VOTE:criID1,proName1:criID2,proName2#POINT:proID1,point1:proId2,point2#user
+					StringBuilder sb = new StringBuilder("VOTE:");
+					for(int i = 0 ; i < mainController.getCriteriaList().size() ; i++){
+						sb.append(mainController.getCriteriaList().get(i).getId()+",");
+						sb.append(mainController.getProjectList().get(res[i][1]).getName()+":");
+					}
+					mainController.addVoteResult(sb.toString());
+					mainController.addPage(new PointGUI(Constant.POINT_PANEL, mainController), Constant.POINT_PANEL);
+					mainController.swap(Constant.POINT_PANEL);
+					mainController.clearPanel(pageName);
+				}
+			}
+		});
+		result.add(submit);
 		
 		this.box.add(criteria);
 		this.box.add(space);
 		this.box.add(project);
 		this.box.add(space2);
 		this.box.add(result);
+	}
+	
+	private void updateResult(){
+		show.setText("");
+		for(int i = 0 ; i < mainController.getCriteriaList().size() ; i++){
+			show.append((i+1)+") "+mainController.getCriteriaList().get(i).getName()+"   -->   "+mainController.getProjectList().get(res[i][1]).getName()+"\n");
+		}
 	}
 
 }

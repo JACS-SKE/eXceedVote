@@ -33,12 +33,13 @@ public class Requester extends Observable{
 
 	public void run() throws ClassNotFoundException{
 		try{
-			requestSocket = new Socket("192.168.1.49", port);
+			requestSocket = new Socket("192.168.1.50", port);
 			out = new ObjectOutputStream(requestSocket.getOutputStream());
 			out.flush();
 			in = new ObjectInputStream(requestSocket.getInputStream());
 			while(true){
 				String str = (String)in.readObject();
+				//System.out.println(str);
 				//String str = "INIT:1,name1:2,name2:3,name3:4,name4#CAT:Best Coding:Best GUI:Best of All";
 				String tmp = str.substring(0, 4);
 				if(tmp.equals("INIT")){
@@ -106,9 +107,4 @@ public class Requester extends Observable{
 		}
 	}
 	
-	
-//	public static void main(String[] args) throws SocketException, ClassNotFoundException {
-//		Requester client = new Requester();
-//		client.run();
-//	}
 }

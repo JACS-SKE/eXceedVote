@@ -3,6 +3,7 @@ package jacs.gui;
 import jacs.constant.Constant;
 import jacs.controller.MainController;
 
+import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -19,7 +20,6 @@ public class MainGUI extends JFrame{
 	private CardLayout cardLayout;
 	private Container container;
 	private AuthGUI authPanel;
-	//private CriGUI catGUI;
 	
 	private static MainController mainController;
 	
@@ -38,15 +38,9 @@ public class MainGUI extends JFrame{
 		container.setLayout(cardLayout);
 		mainController = new MainController(container);
 		
-		
-		//add panel here
 		this.authPanel = new AuthGUI(Constant.AUTH_PANEL, this.mainController);
-		//this.catGUI = new CriGUI(Constant.CAT_PANEL, this.mainController);
-		
-		
 		container.add(authPanel, Constant.AUTH_PANEL);
-		//container.add(catGUI, Constant.CAT_PANEL);
-		
+
 		this.pack();
 	}
 	

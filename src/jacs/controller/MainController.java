@@ -32,6 +32,7 @@ public class MainController implements Observer{
 	private String LOGIN_MSG;
 	private String REGIS_MSG;
 	private String VOTE_MSG;
+	private StringBuilder voteResult;
 	
 	
 	public MainController(Container container){
@@ -44,6 +45,7 @@ public class MainController implements Observer{
 		REGIS_MSG = "";
 		VOTE_MSG = "";
 		user = new User("Guest", "Unknow Type", 0);
+		voteResult = new StringBuilder();
 	}
 	
 	public List<Project> getProjectList() {
@@ -127,6 +129,27 @@ public class MainController implements Observer{
 	
 	public void addPage(JPanel panel, String name){
 		container.add(panel, name);
+	}
+	
+	public String getVoteResult() {
+		return voteResult.toString();
+	}
+	
+	public void addVoteResult(String voteResult) {
+		this.voteResult.append(voteResult);
+	}
+	
+	public void clearPanel(String name){
+		for(int i = 0 ; i < container.getComponentCount() ; i++){
+			if(container.getComponent(i).getName().equals(name)){
+				container.remove(i); 
+				break;
+			}
+		}
+	}
+	
+	public int getChildNum(){
+		return this.container.getComponentCount();
 	}
 	
 }

@@ -76,7 +76,6 @@ public class AuthGUI extends BasePanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				mainController.getRequester().sendMessage("LOGIN,"+txtUser.getText().toString()+","+txtPass.getText().toString());
-				//mainController.swap(Constant.CAT_PANEL);
 			}
 		});
 		
