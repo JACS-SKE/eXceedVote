@@ -26,6 +26,7 @@ public class Requester extends Observable{
  	private ObjectInputStream in;
  	private String message;
  	private int port = 9999;
+ 	private String ip = "158.108.137.217";
  	private ServerController serverController;
  	private MainController mainController;
  	
@@ -40,7 +41,7 @@ public class Requester extends Observable{
 
 	public void run() throws ClassNotFoundException{
 		try{
-			
+			requestSocket = new Socket(ip, port);
 			out = new ObjectOutputStream(requestSocket.getOutputStream());
 			out.flush();
 			in = new ObjectInputStream(requestSocket.getInputStream());
