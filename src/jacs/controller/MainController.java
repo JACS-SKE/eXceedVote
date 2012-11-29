@@ -46,6 +46,7 @@ public class MainController implements Observer{
 		REGIS_MSG = "";
 		VOTE_MSG = "";
 		user = new User("Guest", "Unknow Type", 0);
+		ballot = new Ballot(user.getName());
 	}
 	
 	public List<Project> getProjectList() {
