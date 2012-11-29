@@ -1,4 +1,4 @@
-package jacs.vote;
+package jacs.domain;
 
 public class Criteria {
 	private int id;

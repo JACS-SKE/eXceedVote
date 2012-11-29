@@ -2,12 +2,12 @@ package jacs.controller;
 
 import jacs.component.BasePanel;
 import jacs.constant.Constant;
+import jacs.domain.Criteria;
+import jacs.domain.Project;
+import jacs.domain.User;
 import jacs.gui.AuthGUI;
 import jacs.gui.CriGUI;
 import jacs.request.Requester;
-import jacs.vote.Criteria;
-import jacs.vote.Project;
-import jacs.vote.User;
 
 import java.awt.CardLayout;
 import java.awt.Component;

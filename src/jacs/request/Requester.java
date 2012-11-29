@@ -1,11 +1,10 @@
 package jacs.request;
 
-
 import jacs.controller.MainController;
 import jacs.controller.ServerController;
-import jacs.vote.Criteria;
-import jacs.vote.Project;
-import jacs.vote.User;
+import jacs.domain.Criteria;
+import jacs.domain.Project;
+import jacs.domain.User;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -17,6 +16,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
+/**
+ * @author Jaturawit Jantarasriwongs
+ * Class for connect to server by Socket
+ */
 public class Requester extends Observable{
 	private Socket requestSocket;
 	private ObjectOutputStream out;
@@ -26,6 +29,10 @@ public class Requester extends Observable{
  	private ServerController serverController;
  	private MainController mainController;
  	
+ 	/**
+ 	 * 
+ 	 * @param serverController
+ 	 */
 	public Requester(ServerController serverController){
 		this.serverController = serverController;
 		this.mainController = this.serverController.getMainController();
@@ -33,7 +40,7 @@ public class Requester extends Observable{
 
 	public void run() throws ClassNotFoundException{
 		try{
-			requestSocket = new Socket("192.168.1.50", port);
+			
 			out = new ObjectOutputStream(requestSocket.getOutputStream());
 			out.flush();
 			in = new ObjectInputStream(requestSocket.getInputStream());
