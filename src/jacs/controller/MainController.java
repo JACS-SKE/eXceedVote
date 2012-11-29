@@ -2,6 +2,7 @@ package jacs.controller;
 
 import jacs.component.BasePanel;
 import jacs.constant.Constant;
+import jacs.domain.Ballot;
 import jacs.domain.Criteria;
 import jacs.domain.Project;
 import jacs.domain.User;
@@ -29,10 +30,10 @@ public class MainController implements Observer{
 	private List<Project> projectList;
 	private List<Criteria> cateriaList;
 	private User user;
+	private Ballot ballot;
 	private String LOGIN_MSG;
 	private String REGIS_MSG;
 	private String VOTE_MSG;
-	private StringBuilder voteResult;
 	
 	
 	public MainController(Container container){
@@ -45,7 +46,6 @@ public class MainController implements Observer{
 		REGIS_MSG = "";
 		VOTE_MSG = "";
 		user = new User("Guest", "Unknow Type", 0);
-		voteResult = new StringBuilder();
 	}
 	
 	public List<Project> getProjectList() {
@@ -132,11 +132,11 @@ public class MainController implements Observer{
 	}
 	
 	public String getVoteResult() {
-		return voteResult.toString();
+		return ballot.getResult();
 	}
 	
 	public void addVoteResult(String voteResult) {
-		this.voteResult.append(voteResult);
+		this.ballot.setVoteResult(voteResult);
 	}
 	
 	public void clearPanel(String name){

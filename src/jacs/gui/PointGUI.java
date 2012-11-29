@@ -1,6 +1,7 @@
 package jacs.gui;
 
 import jacs.component.BasePanel;
+import jacs.constant.Constant;
 import jacs.controller.MainController;
 
 import java.awt.BorderLayout;
@@ -90,6 +91,8 @@ public class PointGUI extends BasePanel {
 				sb.append("#"+mainController.getUser().getName());
 				mainController.addVoteResult(sb.toString());
 				mainController.getRequester().sendMessage(mainController.getVoteResult());
+				mainController.swap(Constant.AUTH_PANEL);
+				mainController.clearPanel(Constant.POINT_PANEL);
 			}
 		});
 		

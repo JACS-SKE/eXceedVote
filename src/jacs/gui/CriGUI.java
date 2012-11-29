@@ -164,6 +164,7 @@ public class CriGUI extends BasePanel {
 				}
 			}
 		});
+		
 		result.add(submit);
 		
 		this.box.add(criteria);
