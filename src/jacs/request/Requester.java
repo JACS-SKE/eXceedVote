@@ -6,15 +6,15 @@ import jacs.domain.Criteria;
 import jacs.domain.Project;
 import jacs.domain.User;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.net.SocketException;
 import java.net.UnknownHostException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Observable;
+import java.util.Properties;
 
 /**
  * @author Jaturawit Jantarasriwongs
@@ -26,7 +26,7 @@ public class Requester extends Observable{
  	private ObjectInputStream in;
  	private String message;
  	private int port = 9999;
- 	private String ip = "158.108.137.217";
+ 	private String ip;
  	private ServerController serverController;
  	private MainController mainController;
  	
@@ -37,6 +37,22 @@ public class Requester extends Observable{
 	public Requester(ServerController serverController){
 		this.serverController = serverController;
 		this.mainController = this.serverController.getMainController();
+		setProperties();
+	}
+
+	private void setProperties() {
+		try {
+			FileInputStream propFile = new FileInputStream("properties.txt");
+			Properties p = new Properties(System.getProperties());
+			p.load(propFile);
+			System.setProperties(p);
+			ip = System.getProperty("exceedvote.ip");
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException ioe){
+			ioe.printStackTrace();
+		}
+		
 	}
 
 	public void run() throws ClassNotFoundException{
@@ -47,7 +63,6 @@ public class Requester extends Observable{
 			in = new ObjectInputStream(requestSocket.getInputStream());
 			while(true){
 				String str = (String)in.readObject();
-				//System.out.println(str);
 				//String str = "INIT:1,name1:2,name2:3,name3:4,name4#CAT:Best Coding:Best GUI:Best of All";
 				String tmp = str.substring(0, 4);
 				if(tmp.equals("INIT")){
@@ -57,7 +72,7 @@ public class Requester extends Observable{
 					String[] project = split[0].split(":");
 					String[] cateria = split[1].split(":");
 					for(int i = 1 ; i < project.length ; i++)
-						mainController.getProjectList().add(new Project(Integer.parseInt(project[i].split(",")[0]), project[i].split(",")[1])); 
+						mainController.getProjectList().add(new Project(Integer.parseInt(project[i].split(",")[0]), project[i].split(",")[1]));
 					for(int i = 1 ; i < cateria.length ; i++)
 						mainController.getCriteriaList().add(new Criteria(Integer.parseInt(cateria[i].split(",")[0]), cateria[i].split(",")[1]));
 				}else if(tmp.equals("LOGI")){

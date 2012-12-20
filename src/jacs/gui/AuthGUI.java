@@ -76,6 +76,8 @@ public class AuthGUI extends BasePanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				mainController.getRequester().sendMessage("LOGIN,"+txtUser.getText().toString()+","+txtPass.getText().toString());
+				txtPass.setText("");
+				txtUser.setText("");
 			}
 		});
 		
