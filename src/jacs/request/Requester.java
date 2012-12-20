@@ -26,7 +26,7 @@ public class Requester extends Observable{
  	private ObjectInputStream in;
  	private String message;
  	private int port = 9999;
- 	private String ip = "158.108.137.217";
+ 	private String ip = "192.168.1.46";
  	private ServerController serverController;
  	private MainController mainController;
  	

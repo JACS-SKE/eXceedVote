@@ -4,10 +4,11 @@ package jacs.domain;
 public class Ballot {
 	
 	private String user;
-	private StringBuilder voteResult;
+	private StringBuilder voteResult ;
 	
 	public Ballot(String user){
 		this.user = user;
+		voteResult = new StringBuilder();
 	}
 	
 	public void setVoteResult(String voteResult) {
