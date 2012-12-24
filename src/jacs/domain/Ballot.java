@@ -7,6 +7,7 @@ public class Ballot {
 	private StringBuilder voteResult ;
 	
 	public Ballot(String user){
+		this.voteResult = new StringBuilder();
 		this.user = user;
 		voteResult = new StringBuilder();
 	}
