@@ -1,0 +1,10 @@
+We can't make our project run with JAR because we separate the project into 2 parts. 1. eXceedVote 2. eXceedVoteServer
+This cause some problems such as we can't call "Properties" file, can't use "this.getClass.getResource" to call image or fonts that have been put in and also problems on Server too.
+
+Therefore, we would like you to import our project in eclipse and run by do as follows
+
+1. import eXceedVoteServer into eclipse and run Main class(src/jacs/Main) to open the server and the management system.
+2. import eXceedVote into eclipse and change ip in "properties.txt" file to the same ip as the server's computer. In this case, it's your laptop's ip.
+3. Run Main class(src/jacs/Main) to access to the main user interface.
+
+We are really sorry that can't run with JAR and sorry for any inconvenience.
